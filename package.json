@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "webpack": "webpack"
+    "start": "npm run build",
+    "build": "webpack -d && webpack-dev-server --content-base . --inline --hot --port 8000"
   },
   "author": "Christophe Coenraets <ccoenraets@gmail.com> (http://coenraets.org/)",
   "license": "ISC",
@@ -16,5 +17,8 @@
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "webpack": "^1.13.1"
+  },
+  "dependencies": {
+    "webpack-dev-server": "^1.16.2"
   }
 }
