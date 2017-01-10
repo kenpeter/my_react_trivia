@@ -46,6 +46,7 @@ class App extends React.Component {
   }
 
 
+  // listen to win change size, change state, trigger render
   // jquery ready
   componentDidMount() {
     // when resize set state.w and state.h
@@ -80,9 +81,6 @@ class App extends React.Component {
       // cat + question
       // rows == max questions len in each, col
       this.setState({data: data, rows: rows, cols: data.length});
-      
-      //test
-      //console.log(this.state);
     });
   }
 
@@ -96,32 +94,59 @@ class App extends React.Component {
 
 
   render() {
+    //test
+    console.log("render");
+  
     // header height
     // well it depends on win.w, so 60 or 32
     let headerHeight = this.state.windowWidth > 640 ? 60 : 32,
       
-    // individual car width
+    // when win width size is small, card width small
     cardWidth = this.state.windowWidth / this.state.cols,
     
     // card height
     // minus header / this.state.rows
+    // when win height is small, card height small
     cardHeight = (this.state.windowHeight - headerHeight) / this.state.rows,
     cards = [];
   
     this.state.data.forEach((category, categoryIndex) => {
+      
+      let left_posi = cardWidth * categoryIndex;
     
-      /*
-      console.log("==========");
-      console.log(categoryIndex);
-      console.log(category);
-      */
+      //test
+      //console.log(left_posi);
+    
+      category.questions.forEach((question, questionIndex) => {
+        
+        //test
+        //console.log(question);
+        let top_posi = questionIndex * cardHeight + headerHeight;
+        let key = categoryIndex + '-' + questionIndex; 
+        
+        cards.push(
+          <Card 
+            left={left_posi}
+            top={top_posi}
+            height={cardHeight}
+            width={cardWidth}
+            question={question}
+            key={key}
+          />
+        );
+      
+      });  
+      
       
     });
   
     return (
       <div>
-        <h3>App.js - change?</h3>
-        <Headers />
+        <Headers 
+          data={this.state.data} 
+          headerWidth={cardWidth}
+        />
+        {cards}
       </div>
     );
   }  
