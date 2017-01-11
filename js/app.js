@@ -9,6 +9,8 @@ import Headers from './Headers';
 
 import request from './request';
 
+var config = require('../config');
+
 class App extends React.Component {
   constructor(props) {
   
@@ -61,7 +63,7 @@ class App extends React.Component {
     // data
     // then
     // result => {}
-    request({url: "http://localhost:3000/cat_question.json"}).then(result => {
+    request({url: config.backend_data_url}).then(result => {
       // data which is the cat name + questions
       let data = JSON.parse(result);
       let rows = 0;

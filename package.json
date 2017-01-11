@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "webpack": "webpack",
     "start": "npm run build",
     "build": "webpack -d && webpack-dev-server --content-base . --inline --hot --port 8000"
   },
