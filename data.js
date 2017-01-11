@@ -5,7 +5,8 @@ var data = [
       {
         "points": 100,
         "question": "<p>question 1</p>",
-        "answer": "answer 1"
+        "answer": "answer 1",
+        "img": "sky.jpg"
       },
       {
         "points": 100,

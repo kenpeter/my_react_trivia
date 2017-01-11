@@ -12,6 +12,7 @@ import request from './request';
 class App extends React.Component {
   constructor(props) {
   
+    //
     console.log("contructor");
   
     super(props);
@@ -52,6 +53,7 @@ class App extends React.Component {
     // when resize set state.w and state.h
     window.addEventListener('resize', this.handleResize.bind(this));
     
+    //
     console.log("componentDidMount");
     
     // request
@@ -123,6 +125,9 @@ class App extends React.Component {
         //console.log(question);
         let top_posi = questionIndex * cardHeight + headerHeight;
         let key = categoryIndex + '-' + questionIndex; 
+        //let front_img = "/assets/img/front/sky.jpg";
+        //let question_img = "/assets/img/question/sky.jpg";
+        //let answer_img = "/assets/img/answer/sky.jpg";
         
         cards.push(
           <Card 
@@ -131,6 +136,7 @@ class App extends React.Component {
             height={cardHeight}
             width={cardWidth}
             question={question}
+            
             key={key}
           />
         );

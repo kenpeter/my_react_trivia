@@ -65,11 +65,28 @@ class Card extends React.Component {
     
   }
 
+  // so here we set question and answer content
   // dangerouslySetInnerHTML set inner html
   getLabelBack() {
-    // if question, then question
-    // else answer
-    return {__html: this.state.view === 'question' ? this.props.question.question : this.props.question.answer};
+    let html = "";
+  
+    // so I can use it outside of render func
+    // question
+    if(this.state.view === 'question') {
+      html = <p>
+        <img src={`/assets/img/question/${this.props.question.img_name}`} /><br/>
+        <span>{this.props.question.question}</span>
+      </p>;
+    }
+    else {
+      // answer
+      html = <p>
+        <img src={`/assets/img/answer/${this.props.question.img_name}`} /><br/>
+        <span>{this.props.question.answer}</span>
+      </p>;
+    }
+
+    return html;
   }
 
   transitionEndHandler(event) {
@@ -104,9 +121,11 @@ class Card extends React.Component {
     let front = 
       this.state.completed ? 
         <img src='assets/img/react.svg'/> : 
-        <span className='points'>{this.props.question.points}</span>;
+        <span className='points'><img src={`/assets/img/front/${this.props.question.img_name}`} /></span>;
     
     let className = 'flipper';
+    let back_content = this.getLabelBack();
+  
   
     // not points flipped
     if (this.state.view !== 'points') {
@@ -117,6 +136,8 @@ class Card extends React.Component {
     if (this.state.flipping) {
       className = className + ' flipping';
     }
+  
+    
   
     return (
       <div 
@@ -131,8 +152,7 @@ class Card extends React.Component {
           </div>
           
           <div className='back' >
-            <span dangerouslySetInnerHTML={this.getLabelBack()} />
-              <img src='assets/img/react.svg'/>
+            {back_content}
           </div>
         </div>
       </div>    
